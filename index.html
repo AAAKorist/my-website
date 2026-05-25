@@ -5,41 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>霸兔饲养基地</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="app-container">
-    <!-- 头部区域：网站标题 + 装饰icon -->
     <div class="hero-box">
         <div class="title-wrapper">
             <img class="main-title-img" src="assets/title-logo.png" alt="霸兔饲养基地">
-            <!--<h1 class="main-title">霸兔饲养基地</h1>-->
         </div>
         <div class="subtitle">✦ 赛博试阅处 ✦</div>
-        
-        <!-- 滑动切换工具栏 圆形长条风格 -->
-        <div style="display: flex; justify-content: center; margin-top: 1rem;">
-            <div class="toggle-slider-box" id="toggleSlider">
-                <div class="toggle-option active" data-type="doujin">同人本</div>
-                <div class="toggle-option" data-type="short">短篇</div>
+        <div class="toggle-slider-box">
+            <div class="toggle-option active" data-type="doujin">同人本</div>
+            <div class="toggle-option" data-type="short">短篇</div>
+        </div>
+    </div>
+
+    <div class="bookshelf">
+        <div class="section-caption">霸兔饲养员特供 <span id="activeTypeLabel">同人本</span></div>
+        <div id="booksGrid" class="grid-books"></div>
+    </div>
+
+    <footer class="custom-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-social">
+                    <div class="social-item">
+                        <span class="social-icon">📕</span>
+                        <span class="social-label">小红书</span>
+                        <span class="social-handle">@你的小红书账号</span>
+                    </div>
+                    <div class="social-item">
+                        <span class="social-icon">🐦</span>
+                        <span class="social-label">微博</span>
+                        <span class="social-handle">@你的微博账号</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-qrcode">
+                <div class="qrcode-box">
+                    <div class="qrcode-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 100 100"><rect width="100" height="100" rx="12" fill="#3d1f2c"/><rect x="15" y="15" width="30" height="30" rx="4" fill="#e65c7c"/><rect x="55" y="15" width="30" height="30" rx="4" fill="#e65c7c"/><rect x="15" y="55" width="30" height="30" rx="4" fill="#e65c7c"/><rect x="55" y="55" width="30" height="30" rx="4" fill="#e65c7c"/><rect x="35" y="35" width="30" height="30" rx="4" fill="#ffebf0"/><circle cx="30" cy="30" r="5" fill="#ffebf0"/><circle cx="70" cy="30" r="5" fill="#ffebf0"/><circle cx="30" cy="70" r="5" fill="#ffebf0"/><circle cx="70" cy="70" r="5" fill="#ffebf0"/></svg>
+                    </div>
+                    <p class="qrcode-label">匿名提问箱<br>扫码留言</p>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- 动态书库grid显示 -->
-    <div class="bookshelf">
-        <div class="section-caption">
-            霸兔饲养员特供 <span id="activeTypeLabel">同人本</span>
+        <div class="footer-copyright">
+            <p>🚫 严禁下载 · 二次上传 · 二次印刷 🚫</p>
         </div>
-        <div id="booksGrid" class="grid-books">
-            <!-- js动态渲染 -->
-        </div>
-    </div>
-    <footer>
-        🐰 甜蜜赛博试阅 · 粉黑甜酷幻想   🥕 点击心选 胡萝卜赐予力量
     </footer>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>

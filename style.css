@@ -5,16 +5,13 @@
 }
 
 body {
-    /* 修改：从上至下的粉到白垂直渐变背景 */
     background: linear-gradient(180deg, #ffe4ec 0%, #ffe4ec 10%, #ffffff 25%, #ffffff 100%);
     font-family: 'Inter', sans-serif;
     color: #1e1a1c;
     line-height: 1.4;
-    position: relative;
     min-height: 100vh;
 }
 
-/* 装饰几何背景：网格 - 修改为浅灰色细线，更柔和 */
 body::before {
     content: "";
     position: fixed;
@@ -24,9 +21,7 @@ body::before {
     height: 100%;
     pointer-events: none;
     z-index: 0;
-    background-image: 
-        linear-gradient(#d4c5cc 1px, transparent 1px),
-        linear-gradient(90deg, #d4c5cc 1px, transparent 1px);
+    background-image: linear-gradient(#d4c5cc 1px, transparent 1px), linear-gradient(90deg, #d4c5cc 1px, transparent 1px);
     background-size: 40px 40px;
     opacity: 0.4;
 }
@@ -43,7 +38,6 @@ body::after {
     z-index: 0;
 }
 
-/* 主要容器, 相对层叠 */
 .app-container {
     position: relative;
     z-index: 2;
@@ -52,7 +46,8 @@ body::after {
     padding: 2rem 2rem 3rem;
 }
 
-/* ---------- 头部区域 ---------- */
+/* 头部 */
+/* 头部 - 修复垂直排列 */
 .hero-box {
     background: rgba(255, 250, 252, 0.9);
     backdrop-filter: blur(2px);
@@ -60,9 +55,10 @@ body::after {
     padding: 2rem 1.5rem;
     text-align: center;
     margin-bottom: 2.5rem;
-    /* 外描边粗细调整位置1：修改下面的 border 宽度和颜色 */
-    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(230, 92, 124, 0.4);
-    transition: all 0.2s ease;
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(230, 92, 124, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title-wrapper {
@@ -72,27 +68,6 @@ body::after {
     flex-wrap: wrap;
     gap: 0.8rem;
     margin-bottom: 0.75rem;
-}
-
-.title-icon {
-    font-size: 2.5rem;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-    transition: transform 0.2s ease;
-}
-
-.title-icon:hover {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.main-title {
-    font-size: 3.2rem;
-    font-weight: 800;
-    background: #1e1a1c;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 12px rgba(255, 120, 160, 0.15);
 }
 
 .main-title-img {
@@ -108,23 +83,21 @@ body::after {
     font-weight: 500;
     color: #b3546b;
     background: rgba(255, 235, 240, 0.8);
-    display: inline-block;
+    display: block;           /* 改为 block，确保独占一行 */
     padding: 0.25rem 1.2rem;
     border-radius: 40px;
-    backdrop-filter: blur(2px);
     letter-spacing: 1px;
+    margin-bottom: 1rem;
+    width: fit-content;       /* 让背景宽度适应内容 */
 }
 
-/* 切换栏 —— 滑动圆条 (类似滑杆切换) */
+/* 切换栏 */
 .toggle-slider-box {
     background: #fff0f3;
     border-radius: 60px;
     padding: 0.5rem;
-    display: inline-flex;
-    width: auto;
-    margin: 1.5rem auto 1rem;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.02);
-    border: 1px solid #ffc0d0;
+    display: inline-flex;     /* 保持 inline-flex 让选项水平排列，但父级 flex column 会让它单独一行 */
+    border: 3px solid rgba(230, 92, 124, 0.4);
 }
 
 .toggle-option {
@@ -133,19 +106,16 @@ body::after {
     padding: 0.6rem 2rem;
     border-radius: 40px;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     background: transparent;
     color: #8f5a6b;
-    letter-spacing: 0.5px;
 }
 
 .toggle-option.active {
-    background: #1e1a1c;  /* 黑酷 */
+    background: #1e1a1c;
     color: #ffebf0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* 书库网格展示 */
+/* 书库 */
 .bookshelf {
     margin-top: 2rem;
 }
@@ -176,32 +146,26 @@ body::after {
     gap: 2rem 1.5rem;
 }
 
-/* 商品卡片UI - 修改：卡片背景改为浅灰色，实现"格子偏灰"的效果 */
+/* 卡片 */
 .book-card {
-    background: #f2ecee;  /* 浅灰色调，符合"格子偏灰"要求 */
-    backdrop-filter: blur(2px);
+    background: #f2ecee;
     border-radius: 2rem;
     overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.2s;
-    /* 外描边粗细调整位置2：修改下面的 box-shadow 的第四个值(描边宽度)和颜色 */
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04), 0 0 0 1px #d4bec8;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04), 0 0 0 3px #d4bec8;
     display: flex;
     flex-direction: column;
 }
 
 .book-card:hover {
     transform: translateY(-6px);
-    /* 外描边粗细调整位置3：hover状态下的描边也可以单独调整 */
-    box-shadow: 0 20px 28px -12px rgba(230, 92, 124, 0.2), 0 0 0 2px #e65c7c;
+    box-shadow: 0 20px 28px -12px rgba(230, 92, 124, 0.2), 0 0 0 3px #e65c7c;
 }
 
 .cover-area {
     position: relative;
     aspect-ratio: 3 / 4;
     background: #e8dce2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
 }
 
@@ -209,10 +173,8 @@ body::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.2s;
 }
 
-/* 独立图标角标样式 */
 .card-icon-badge-single {
     position: absolute;
     bottom: 12px;
@@ -221,26 +183,17 @@ body::after {
     backdrop-filter: blur(4px);
     border-radius: 30px;
     padding: 6px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
 }
 
 .book-display-icon {
     width: 22px;
     height: 22px;
     filter: brightness(0) invert(1);
-    transition: transform 0.2s ease;
-}
-
-.book-card:hover .book-display-icon {
-    transform: scale(1.1);
 }
 
 .card-info {
     padding: 1rem 1rem 1.2rem;
-    background: #faf5f7;  /* 卡片内部信息区微调，与整体灰调协调 */
+    background: #faf5f7;
     border-top: 1px solid #e6d5dd;
 }
 
@@ -248,9 +201,6 @@ body::after {
     font-weight: 800;
     font-size: 1.25rem;
     color: #2c2024;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .book-sub {
@@ -260,7 +210,6 @@ body::after {
     font-weight: 500;
 }
 
-/* 信息行样式 - 用于显示角色 */
 .info-row {
     display: flex;
     flex-wrap: wrap;
@@ -276,7 +225,6 @@ body::after {
     background: #ffeef4;
     padding: 0.15rem 0.5rem;
     border-radius: 16px;
-    letter-spacing: 0.3px;
 }
 
 .info-value {
@@ -286,43 +234,139 @@ body::after {
     flex: 1;
 }
 
-/* 响应式修饰 */
+/* Footer */
+.custom-footer {
+    margin-top: 4rem;
+    background: rgba(255, 250, 252, 0.9);
+    border-radius: 2rem 2rem 1rem 1rem;
+    padding: 2rem 2rem 1.5rem;
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(230, 92, 124, 0.4);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-info {
+    flex: 2;
+    min-width: 200px;
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 235, 240, 0.2);
+}
+
+.social-icon {
+    font-size: 1.4rem;
+    width: 32px;
+    text-align: center;
+}
+
+.social-label, .social-handle {
+    color: #b3546b;
+}
+
+.social-label {
+    font-weight: 600;
+    min-width: 60px;
+}
+
+.social-handle {
+    font-weight: 500;
+}
+
+.footer-qrcode {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.qrcode-box {
+    text-align: center;
+    background: rgba(255, 235, 240, 0.12);
+    padding: 0.8rem;
+    border-radius: 1.5rem;
+}
+
+.qrcode-placeholder {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    background: #ffebf0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.qrcode-label {
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
+    color: #b3546b;
+    line-height: 1.3;
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255, 235, 240, 0.15);
+    font-size: 1.2rem;
+    color: #b3546b;
+}
+
+/* 响应式 */
 @media (max-width: 680px) {
     .app-container {
         padding: 1.2rem;
     }
-    
-    .main-title {
-        font-size: 2.2rem;
-    }
     .main-title-img {
-        height: 300px;
-    }
-    .title-icon {
-        font-size: 1.8rem;
+        height: 200px;
     }
     .toggle-option {
         padding: 0.4rem 1.2rem;
         font-size: 1rem;
     }
-    .card-icon-badge-single {
-        padding: 4px 8px;
+    .custom-footer {
+        padding: 1.5rem;
+        margin-top: 3rem;
     }
-    .book-display-icon {
-        width: 18px;
-        height: 18px;
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
     }
-    .info-row {
+    .footer-social {
+        align-items: center;
+    }
+    .social-item {
+        width: 100%;
+        justify-content: center;
+    }
+    .qrcode-placeholder {
+        width: 70px;
+        height: 70px;
+    }
+    .qrcode-label {
         font-size: 0.65rem;
-        gap: 0.3rem;
     }
-}
-
-footer {
-    text-align: center;
-    margin-top: 3rem;
-    font-size: 0.75rem;
-    color: #c28b9a;
-    border-top: 1px solid #f0dce4;
-    padding-top: 1.5rem;
+    .footer-copyright {
+        font-size: 0.8rem;
+    }
 }
