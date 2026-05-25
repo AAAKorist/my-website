@@ -55,6 +55,39 @@
         </div>
     </footer>
 </div>
+
+<!-- ═══════════ READER OVERLAY ═══════════ -->
+<div id="readerOverlay" class="reader-overlay">
+    <div class="reader-modal">
+        <!-- Top bar -->
+        <div class="reader-topbar">
+            <span id="readerTitle" class="reader-book-title"></span>
+            <button id="readerClose" class="reader-close-btn" aria-label="关闭">✕</button>
+        </div>
+
+        <!-- Book stage -->
+        <div class="reader-body">
+            <!-- Prev button (left side) -->
+            <button id="readerPrev" class="reader-nav-btn reader-nav-prev" aria-label="上一页">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+
+            <!-- Pages -->
+            <div id="readerStage" class="reader-stage desktop"></div>
+
+            <!-- Next button (right side) -->
+            <button id="readerNext" class="reader-nav-btn reader-nav-next" aria-label="下一页">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="reader-bottombar">
+            <span id="readerPageInfo" class="reader-page-info"></span>
+        </div>
+    </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>

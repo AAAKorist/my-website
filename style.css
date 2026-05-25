@@ -370,3 +370,259 @@ body::after {
         font-size: 0.8rem;
     }
 }
+/* ═══════════════════════════════════════════════
+   BOOK CARD ENHANCEMENTS
+   ═══════════════════════════════════════════════ */
+.book-card {
+    cursor: pointer;
+}
+
+.cover-area {
+    position: relative;
+}
+
+/* "点击试阅" hover hint */
+.card-read-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.05em;
+    background: rgba(30, 10, 20, 0.45);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    border-radius: 0; /* inherits cover-area overflow:hidden */
+}
+
+.book-card:hover .card-read-hint {
+    opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════
+   READER OVERLAY
+   ═══════════════════════════════════════════════ */
+.reader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(15, 8, 12, 0.82);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.reader-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.reader-modal {
+    display: flex;
+    flex-direction: column;
+    width: 96vw;
+    max-width: 1100px;
+    height: 92vh;
+    background: #1e1a1c;
+    border-radius: 1.8rem;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 2px rgba(230, 92, 124, 0.35);
+}
+
+/* Top bar */
+.reader-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.4rem;
+    background: #2a2226;
+    border-bottom: 1px solid rgba(230, 92, 124, 0.2);
+    flex-shrink: 0;
+}
+
+.reader-book-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffcfdc;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 3rem);
+}
+
+.reader-close-btn {
+    background: rgba(230, 92, 124, 0.15);
+    border: none;
+    color: #e65c7c;
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s ease, transform 0.18s ease;
+    flex-shrink: 0;
+}
+
+.reader-close-btn:hover {
+    background: rgba(230, 92, 124, 0.35);
+    transform: scale(1.1);
+}
+
+/* Body (nav buttons + stage) */
+.reader-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 3.5rem; /* room for nav buttons */
+}
+
+/* Nav buttons */
+.reader-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 235, 240, 0.1);
+    border: 1.5px solid rgba(230, 92, 124, 0.3);
+    color: #ffcfdc;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+}
+
+.reader-nav-btn:hover:not(:disabled) {
+    background: rgba(230, 92, 124, 0.3);
+    border-color: #e65c7c;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.reader-nav-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.reader-nav-prev { left: 0.6rem; }
+.reader-nav-next { right: 0.6rem; }
+
+/* ── Desktop: two-page spread ── */
+.reader-stage.desktop {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    gap: 0; /* No gap — pages touch like a real book */
+}
+
+.reader-stage.desktop .reader-page-img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: 50%;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Left page: slight shadow on right edge (spine effect) */
+.reader-stage.desktop .page-left {
+    box-shadow: 4px 0 18px rgba(0,0,0,0.5);
+    border-radius: 4px 0 0 4px;
+}
+
+/* Right page */
+.reader-stage.desktop .page-right {
+    border-radius: 0 4px 4px 0;
+}
+
+/* Single last page on desktop (odd total) */
+.reader-stage.desktop .page-single-last {
+    max-width: 45%;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* ── Mobile: single page ── */
+.reader-stage.mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.reader-stage.mobile .reader-page-img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* Bottom bar */
+.reader-bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.4rem;
+    background: #2a2226;
+    border-top: 1px solid rgba(230, 92, 124, 0.2);
+    flex-shrink: 0;
+}
+
+.reader-page-info {
+    font-size: 0.85rem;
+    color: #a07080;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+
+/* ═══════════════════════════════════════════════
+   READER RESPONSIVE (mobile ≤ 767px)
+   ═══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+    .reader-modal {
+        width: 100vw;
+        height: 100dvh;
+        border-radius: 0;
+    }
+
+    .reader-body {
+        padding: 0 2.8rem;
+    }
+
+    .reader-nav-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .reader-nav-prev { left: 0.3rem; }
+    .reader-nav-next { right: 0.3rem; }
+
+    .reader-topbar {
+        padding: 0.65rem 1rem;
+    }
+
+    .reader-book-title {
+        font-size: 0.9rem;
+    }
+}
