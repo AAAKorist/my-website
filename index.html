@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>霸兔饲养基地</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app-container">
+    <!-- 头部区域：网站标题 + 装饰icon -->
+    <div class="hero-box">
+        <div class="title-wrapper">
+            <img class="main-title-img" src="assets/title-logo.png" alt="霸兔饲养基地">
+            <!--<h1 class="main-title">霸兔饲养基地</h1>-->
+        </div>
+        <div class="subtitle">✦ 赛博试阅处 ✦</div>
+        
+        <!-- 滑动切换工具栏 圆形长条风格 -->
+        <div style="display: flex; justify-content: center; margin-top: 1rem;">
+            <div class="toggle-slider-box" id="toggleSlider">
+                <div class="toggle-option active" data-type="doujin">同人本</div>
+                <div class="toggle-option" data-type="short">短篇</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 动态书库grid显示 -->
+    <div class="bookshelf">
+        <div class="section-caption">
+            霸兔饲养员特供 <span id="activeTypeLabel">同人本</span>
+        </div>
+        <div id="booksGrid" class="grid-books">
+            <!-- js动态渲染 -->
+        </div>
+    </div>
+    <footer>
+        🐰 甜蜜赛博试阅 · 粉黑甜酷幻想   🥕 点击心选 胡萝卜赐予力量
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
